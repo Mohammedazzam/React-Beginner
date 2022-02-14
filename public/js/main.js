@@ -31,26 +31,295 @@
 
 /****************************************/
 
-var number = 0;
+// var number = 0;
+// var increse = () => {
+//     number++
+//     // console.log(number)
+//     render()
+// }
 
-var increse = function increse() {
-    number++;
-    // console.log(number)
+// function render(){
+//     var ele =(
+//         <div>
+//             The Number {number}
+//             <button onClick={increse}> add one</button>
+//         </div>
+//     )
+//     ReactDOM.render(ele, document.getElementById("app"))
+// }
+// render()
+
+
+/****************************************/
+
+// var myInputVal;
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(myInputVal)
+// };
+
+// var obj ={
+//     name:"test",
+//     size:12,
+// }
+
+
+// let counter = (
+//     <div>
+//         <form onSubmit={handelFormSubmit}>
+//             <input type="text" onChange={HandelInputChange} />
+//             <input type="submit" />
+//         </form>
+//         {obj.name + obj.size}
+//     </div>
+// )
+
+// ReactDOM.render(counter,document.getElementById("app"))
+
+
+/******************************/
+
+// var myInputVal;
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(myInputVal)
+// };
+
+
+// let counter = (
+//     <div>
+//         <form onSubmit={handelFormSubmit}>
+//             <input type="text" onChange={HandelInputChange} />
+//             <input type="submit" />
+//         </form>
+
+//     </div>
+// )
+
+// ReactDOM.render(counter,document.getElementById("app"))
+
+
+/*************************/
+
+// var myInputVal;
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(myInputVal)
+// };
+
+
+// var myarr = [1,2,3]
+// myarr.map((ele) => {
+//     console.log(ele)
+// })
+// let counter = (
+//     <div>
+//         <form onSubmit={handelFormSubmit}>
+//             <input type="text" onChange={HandelInputChange} />
+//             <input type="submit" />
+//         </form>
+
+//     </div>
+// )
+
+// ReactDOM.render(counter,document.getElementById("app"))
+
+
+/**********************/
+
+// var myInputVal;
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(myInputVal)
+// };
+
+
+// var myarr = [1,2,3]
+// myarr.map((ele) => {
+//     console.log(ele)
+// })
+// let counter = (
+//     <div>
+//         <form onSubmit={handelFormSubmit}>
+//             <input type="text" onChange={HandelInputChange} />
+//             <input type="submit" />
+//         </form>
+//     {
+//         myarr.map((ele) => {
+//     console.log(ele)
+// })
+//     }
+
+//     </div>
+// )
+
+// ReactDOM.render(counter,document.getElementById("app"))
+
+
+/**************es6 تعامل الاوبجكت في ال **************/
+
+// var myInputVal;
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(myInputVal)
+// };
+
+
+// var obj ={
+//     name:"test",
+//     size:12
+// }
+// let counter = (
+//     <div>
+//         <form onSubmit={handelFormSubmit}>
+//             <input type="text" onChange={HandelInputChange} />
+//             <input type="submit" />
+//         </form>
+//     {obj.name + obj.size}
+//     </div>
+// )
+
+// ReactDOM.render(counter,document.getElementById("app"))
+
+
+/*****************************/
+
+// var myInputVal;
+// // var allItems = [1,2,3];
+// var allItems = [];
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     // console.log(myInputVal)
+//     allItems.push(myInputVal);
+//     // console.log(allItems)
+//     render()
+// };
+
+// function render(){
+//     let counter = (
+//         <div>
+//             <form onSubmit={handelFormSubmit}>
+//                 <input type="text" onChange={HandelInputChange} />
+//                 <input type="submit" />
+//             </form>
+
+//         <ul>
+//             {allItems.length ? allItems.map( (item) => <li> {item} </li>) : ''}
+//         </ul>
+
+//         </div>
+//     )
+
+//     ReactDOM.render(counter,document.getElementById("app"))
+
+// }
+// render()
+
+
+/***********************/
+
+// var myInputVal;
+// // var allItems = [1,2,3];
+// var allItems = [];
+
+// var HandelInputChange = (e) => {
+//     myInputVal = e.target.value
+//     // console.log(e.target.value)
+// }
+
+// var handelFormSubmit = (e) => {
+//     e.preventDefault();
+//     // console.log(myInputVal)
+//     allItems.push(myInputVal);
+//     // console.log(allItems)
+//     e.target.elements[0].value = "" //هذا مسسؤول عن تفريغ الانبوت
+//     render()
+// };
+
+// function render(){
+//     let counter = (
+//         <div>
+//             <form onSubmit={handelFormSubmit}>
+//                 <input type="text" onChange={HandelInputChange} />
+//                 <input type="submit" />
+//             </form>
+
+//         <ul>
+//             {allItems.length ? allItems.map( (item) => <li> {item} </li>) : ''}
+//         </ul>
+
+//         </div>
+//     )
+
+//     ReactDOM.render(counter,document.getElementById("app"))
+
+// }
+// render()
+
+
+/******************مثال جديد******************/
+
+var toggle = false;
+// let toggle = true;
+
+var toggleText = function toggleText() {
+    toggle = !toggle;
     render();
 };
 
 function render() {
-    var ele = React.createElement(
+    console.log(toggle);
+    var counter = React.createElement(
         "div",
         null,
-        "The Number ",
-        number,
         React.createElement(
             "button",
-            { onClick: increse },
-            " add one"
-        )
+            { onClick: toggleText },
+            "Toggle Text"
+        ),
+        toggle ? React.createElement(
+            "p",
+            null,
+            "This Is Text"
+        ) : ""
     );
-    ReactDOM.render(ele, document.getElementById("app"));
+
+    ReactDOM.render(counter, document.getElementById("app"));
 }
 render();
