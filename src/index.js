@@ -33,6 +33,11 @@ class App extends React.Component{
             name:'App Comp',
             title : 'some bla bla bla'
         }
+        this.changeTitle = () =>{
+            this.setState({
+                title:"new title"
+            })
+        }
     }
     render(){
         console.log(this)
@@ -40,6 +45,7 @@ class App extends React.Component{
             <div className="app">
                 {this.state.name}
                 <h1>{this.state.title}</h1>
+                <button onClick={this.changeTitle}>Change</button>
                 <Header test="mmmm" val="oooo"/>{/*child*/}
                 <ListItems pro="this is list Items"/> {/*child*/}
                 <AddItem item={this.state.name}/>{/*child*/}

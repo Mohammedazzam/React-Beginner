@@ -48,6 +48,11 @@ var App = function (_React$Component) {
             name: 'App Comp',
             title: 'some bla bla bla'
         };
+        _this.changeTitle = function () {
+            _this.setState({
+                title: "new title"
+            });
+        };
         return _this;
     }
 
@@ -63,6 +68,11 @@ var App = function (_React$Component) {
                     'h1',
                     null,
                     this.state.title
+                ),
+                React.createElement(
+                    'button',
+                    { onClick: this.changeTitle },
+                    'Change'
                 ),
                 React.createElement(Header, { test: 'mmmm', val: 'oooo' }),
                 React.createElement(ListItems, { pro: 'this is list Items' }),
