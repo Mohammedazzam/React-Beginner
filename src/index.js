@@ -24,13 +24,15 @@
 // }
 
 
+//parent Component
 class App extends React.Component{
     render(){
+        console.log(this)
         return(
             <div className="app">
-                <Header/>
-                <ListItems/>
-                <AddItem/>
+                <Header test="mmmm" val="oooo"/>{/*child*/}
+                <ListItems pro="this is list Items"/> {/*child*/}
+                <AddItem/>{/*child*/}
             </div>
         )
     }
@@ -38,16 +40,18 @@ class App extends React.Component{
 
 class Header extends React.Component{
     render(){
-        return <header>Header Tag</header>
+        console.log(this)
+        return <header>{this.props.val}</header>
     }
 }
 
 
 class ListItems extends React.Component{
     render(){
+        console.log(this)
         return(
             <div>
-            ListItems Component
+            {this.props.pro}
                 <Item/>
             </div>
             )
@@ -56,6 +60,7 @@ class ListItems extends React.Component{
 
 class Item extends React.Component{
     render(){
+        console.log(this)
         return <div>Item</div>
     }
 }

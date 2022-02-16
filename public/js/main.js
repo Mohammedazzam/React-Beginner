@@ -33,6 +33,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // }
 
 
+//parent Component
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
@@ -45,11 +46,13 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: "render",
         value: function render() {
+            console.log(this);
             return React.createElement(
                 "div",
                 { className: "app" },
-                React.createElement(Header, null),
-                React.createElement(ListItems, null),
+                React.createElement(Header, { test: "mmmm", val: "oooo" }),
+                React.createElement(ListItems, { pro: "this is list Items" }),
+                " ",
                 React.createElement(AddItem, null)
             );
         }
@@ -70,10 +73,11 @@ var Header = function (_React$Component2) {
     _createClass(Header, [{
         key: "render",
         value: function render() {
+            console.log(this);
             return React.createElement(
                 "header",
                 null,
-                "Header Tag"
+                this.props.val
             );
         }
     }]);
@@ -93,10 +97,11 @@ var ListItems = function (_React$Component3) {
     _createClass(ListItems, [{
         key: "render",
         value: function render() {
+            console.log(this);
             return React.createElement(
                 "div",
                 null,
-                "ListItems Component",
+                this.props.pro,
                 React.createElement(Item, null)
             );
         }
@@ -117,6 +122,7 @@ var Item = function (_React$Component4) {
     _createClass(Item, [{
         key: "render",
         value: function render() {
+            console.log(this);
             return React.createElement(
                 "div",
                 null,
