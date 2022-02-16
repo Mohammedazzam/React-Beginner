@@ -175,7 +175,18 @@ var AddItem = function (_React$Component5) {
     function AddItem() {
         _classCallCheck(this, AddItem);
 
-        return _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).apply(this, arguments));
+        var _this5 = _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).call(this));
+
+        _this5.state = {
+            name: 'stat'
+        };
+        _this5.changeValue = function (e) {
+            console.log(e.target.value);
+            _this5.setState({
+                name: e.target.value
+            });
+        };
+        return _this5;
     }
 
     _createClass(AddItem, [{
@@ -184,7 +195,8 @@ var AddItem = function (_React$Component5) {
             return React.createElement(
                 'form',
                 null,
-                React.createElement('input', { type: 'text' }),
+                this.state.name,
+                React.createElement('input', { type: 'text', onChange: this.changeValue }),
                 React.createElement('input', { type: 'submit' })
             );
         }

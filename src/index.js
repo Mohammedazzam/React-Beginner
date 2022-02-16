@@ -102,10 +102,23 @@ class Item extends React.Component{
 
 
 class AddItem extends React.Component{
+    constructor(){
+        super();
+        this.state ={
+            name:'stat'
+        }
+        this.changeValue= (e) => {
+            console.log(e.target.value)
+            this.setState ({
+                name:e.target.value
+            })
+        }
+    }
     render(){
         return(
             <form>
-                <input type="text"/>
+            {this.state.name}
+                <input type="text" onChange={this.changeValue}/>
                 <input type="submit"/>
             </form>
             )
