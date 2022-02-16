@@ -26,10 +26,20 @@
 
 //parent Component
 class App extends React.Component{
+    //product (data)
+    constructor(){
+        super();//inherit
+        this.state ={
+            name:'App Comp',
+            title : 'some bla bla bla'
+        }
+    }
     render(){
         console.log(this)
         return(
             <div className="app">
+                {this.state.name}
+                <h1>{this.state.title}</h1>
                 <Header test="mmmm" val="oooo"/>{/*child*/}
                 <ListItems pro="this is list Items"/> {/*child*/}
                 <AddItem/>{/*child*/}
@@ -39,19 +49,36 @@ class App extends React.Component{
 }
 
 class Header extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            name: 'Header Compppp'
+        }
+    }
     render(){
         console.log(this)
-        return <header>{this.props.val}</header>
+        return (
+            <header>{this.props.val}
+                <p>{this.state.name}</p>
+            </header>
+        )
     }
 }
 
 
 class ListItems extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            name:'List Item Compppp'
+        }
+    }
     render(){
         console.log(this)
         return(
             <div>
             {this.props.pro}
+            {this.state.name}
                 <Item/>
             </div>
             )

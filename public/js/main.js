@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -37,22 +37,36 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
+    //product (data)
     function App() {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+        //inherit
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+        _this.state = {
+            name: 'App Comp',
+            title: 'some bla bla bla'
+        };
+        return _this;
     }
 
     _createClass(App, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             console.log(this);
             return React.createElement(
-                "div",
-                { className: "app" },
-                React.createElement(Header, { test: "mmmm", val: "oooo" }),
-                React.createElement(ListItems, { pro: "this is list Items" }),
-                " ",
+                'div',
+                { className: 'app' },
+                this.state.name,
+                React.createElement(
+                    'h1',
+                    null,
+                    this.state.title
+                ),
+                React.createElement(Header, { test: 'mmmm', val: 'oooo' }),
+                React.createElement(ListItems, { pro: 'this is list Items' }),
+                ' ',
                 React.createElement(AddItem, null)
             );
         }
@@ -67,17 +81,27 @@ var Header = function (_React$Component2) {
     function Header() {
         _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+        var _this2 = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
+
+        _this2.state = {
+            name: 'Header Compppp'
+        };
+        return _this2;
     }
 
     _createClass(Header, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             console.log(this);
             return React.createElement(
-                "header",
+                'header',
                 null,
-                this.props.val
+                this.props.val,
+                React.createElement(
+                    'p',
+                    null,
+                    this.state.name
+                )
             );
         }
     }]);
@@ -91,17 +115,23 @@ var ListItems = function (_React$Component3) {
     function ListItems() {
         _classCallCheck(this, ListItems);
 
-        return _possibleConstructorReturn(this, (ListItems.__proto__ || Object.getPrototypeOf(ListItems)).apply(this, arguments));
+        var _this3 = _possibleConstructorReturn(this, (ListItems.__proto__ || Object.getPrototypeOf(ListItems)).call(this));
+
+        _this3.state = {
+            name: 'List Item Compppp'
+        };
+        return _this3;
     }
 
     _createClass(ListItems, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             console.log(this);
             return React.createElement(
-                "div",
+                'div',
                 null,
                 this.props.pro,
+                this.state.name,
                 React.createElement(Item, null)
             );
         }
@@ -120,13 +150,13 @@ var Item = function (_React$Component4) {
     }
 
     _createClass(Item, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             console.log(this);
             return React.createElement(
-                "div",
+                'div',
                 null,
-                "Item"
+                'Item'
             );
         }
     }]);
@@ -144,13 +174,13 @@ var AddItem = function (_React$Component5) {
     }
 
     _createClass(AddItem, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "form",
+                'form',
                 null,
-                React.createElement("input", { type: "text" }),
-                React.createElement("input", { type: "submit" })
+                React.createElement('input', { type: 'text' }),
+                React.createElement('input', { type: 'submit' })
             );
         }
     }]);
