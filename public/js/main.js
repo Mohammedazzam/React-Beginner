@@ -67,7 +67,7 @@ var App = function (_React$Component) {
                 React.createElement(Header, { test: 'mmmm', val: 'oooo' }),
                 React.createElement(ListItems, { pro: 'this is list Items' }),
                 ' ',
-                React.createElement(AddItem, null)
+                React.createElement(AddItem, { item: this.state.name })
             );
         }
     }]);
@@ -96,12 +96,7 @@ var Header = function (_React$Component2) {
             return React.createElement(
                 'header',
                 null,
-                this.props.val,
-                React.createElement(
-                    'p',
-                    null,
-                    this.state.name
-                )
+                this.props.item
             );
         }
     }]);

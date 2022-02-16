@@ -42,7 +42,7 @@ class App extends React.Component{
                 <h1>{this.state.title}</h1>
                 <Header test="mmmm" val="oooo"/>{/*child*/}
                 <ListItems pro="this is list Items"/> {/*child*/}
-                <AddItem/>{/*child*/}
+                <AddItem item={this.state.name}/>{/*child*/}
             </div>
         )
     }
@@ -58,8 +58,10 @@ class Header extends React.Component{
     render(){
         console.log(this)
         return (
-            <header>{this.props.val}
-                <p>{this.state.name}</p>
+            <header>
+                {/* {this.props.val}
+                <p>{this.state.name}</p> */}
+                {this.props.item}
             </header>
         )
     }
