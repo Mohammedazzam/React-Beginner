@@ -2,55 +2,38 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// class Hello extends React.Component {
-//     render(){
-//         return <div>Hello Component</div>
-//     }
-// }
-
-// class Header extends React.Component {
-//     render(){
-//         return <div>Header Component</div>
-//     }
-// }
-
-
-// class Footer extends React.Component {
-//     render(){
-//         return(
-//         <div>
-//             Footer Component 
-//             <span>MOHAMMED</span>
-//         </div>
-//         )
-//     }
-// }
-
-
-//parent Component
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
-    //product (data)
     function App() {
         _classCallCheck(this, App);
 
-        //inherit
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
         _this.state = {
-            name: 'App Comp',
-            title: 'some bla bla bla'
+            products: [],
+            item: ''
         };
-        _this.changeTitle = function () {
+        _this.changeInputVal = function (e) {
             _this.setState({
-                title: "new title"
+                item: e.target.value
+            });
+        };
+
+        _this.submitForm = function (e) {
+            e.preventDefault();
+            var products = [].concat(_toConsumableArray(_this.state.products), [_this.state.item]);
+            _this.setState({
+                products: products,
+                item: ''
             });
         };
         return _this;
@@ -59,25 +42,17 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: 'render',
         value: function render() {
-            console.log(this);
+            // console.log(this.state.products)
             return React.createElement(
                 'div',
                 { className: 'app' },
-                this.state.name,
-                React.createElement(
-                    'h1',
-                    null,
-                    this.state.title
-                ),
-                React.createElement(
-                    'button',
-                    { onClick: this.changeTitle },
-                    'Change'
-                ),
-                React.createElement(Header, { test: 'mmmm', val: 'oooo' }),
-                React.createElement(ListItems, { pro: 'this is list Items' }),
-                ' ',
-                React.createElement(AddItem, { item: this.state.name })
+                React.createElement(Header, null),
+                React.createElement(ListItems, { products: this.state.products }),
+                React.createElement(AddItem, {
+                    changeInput: this.changeInputVal,
+                    saveData: this.submitForm,
+                    item: this.state.item
+                })
             );
         }
     }]);
@@ -91,22 +66,16 @@ var Header = function (_React$Component2) {
     function Header() {
         _classCallCheck(this, Header);
 
-        var _this2 = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
-
-        _this2.state = {
-            name: 'Header Compppp'
-        };
-        return _this2;
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
     }
 
     _createClass(Header, [{
         key: 'render',
         value: function render() {
-            console.log(this);
             return React.createElement(
                 'header',
                 null,
-                this.props.item
+                'Header'
             );
         }
     }]);
@@ -120,24 +89,18 @@ var ListItems = function (_React$Component3) {
     function ListItems() {
         _classCallCheck(this, ListItems);
 
-        var _this3 = _possibleConstructorReturn(this, (ListItems.__proto__ || Object.getPrototypeOf(ListItems)).call(this));
-
-        _this3.state = {
-            name: 'List Item Compppp'
-        };
-        return _this3;
+        return _possibleConstructorReturn(this, (ListItems.__proto__ || Object.getPrototypeOf(ListItems)).apply(this, arguments));
     }
 
     _createClass(ListItems, [{
         key: 'render',
         value: function render() {
-            console.log(this);
             return React.createElement(
                 'div',
                 null,
-                this.props.pro,
-                this.state.name,
-                React.createElement(Item, null)
+                this.props.products.map(function (product) {
+                    return React.createElement(Item, { item: product });
+                })
             );
         }
     }]);
@@ -157,11 +120,12 @@ var Item = function (_React$Component4) {
     _createClass(Item, [{
         key: 'render',
         value: function render() {
-            console.log(this);
             return React.createElement(
                 'div',
                 null,
-                'Item'
+                ' ',
+                this.props.item,
+                ' '
             );
         }
     }]);
@@ -175,18 +139,7 @@ var AddItem = function (_React$Component5) {
     function AddItem() {
         _classCallCheck(this, AddItem);
 
-        var _this5 = _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).call(this));
-
-        _this5.state = {
-            name: 'stat'
-        };
-        _this5.changeValue = function (e) {
-            console.log(e.target.value);
-            _this5.setState({
-                name: e.target.value
-            });
-        };
-        return _this5;
+        return _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).apply(this, arguments));
     }
 
     _createClass(AddItem, [{
@@ -194,9 +147,8 @@ var AddItem = function (_React$Component5) {
         value: function render() {
             return React.createElement(
                 'form',
-                null,
-                this.state.name,
-                React.createElement('input', { type: 'text', onChange: this.changeValue }),
+                { onSubmit: this.props.saveData },
+                React.createElement('input', { type: 'text', onChange: this.props.changeInput, value: this.props.item }),
                 React.createElement('input', { type: 'submit' })
             );
         }
@@ -204,17 +156,5 @@ var AddItem = function (_React$Component5) {
 
     return AddItem;
 }(React.Component);
-
-// let content = (
-//     <div className=''>
-//         <p>THIS IS P</p>
-//         <Hello/>
-//         <Header/>
-//         <Footer/>   
-//     </div>
-// );
-
-// ReactDOM.render(content,document.getElementById("app")) 
-
 
 ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
