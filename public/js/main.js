@@ -122,6 +122,11 @@ var ListItems = function (_React$Component3) {
             return React.createElement(
                 'div',
                 null,
+                this.props.products.length == 0 && React.createElement(
+                    'div',
+                    null,
+                    'There is no Items'
+                ),
                 this.props.products.map(function (product) {
                     return React.createElement(Item, {
                         id: product.id,

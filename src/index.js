@@ -72,6 +72,7 @@ class ListItems extends React.Component{
         console.log(this.props)
         return(
             <div>
+            {this.props.products.length == 0 && <div>There is no Items</div>}
                 {
                     this.props.products.map(product =>
                     <Item
