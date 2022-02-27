@@ -14,20 +14,30 @@ class App extends React.Component{
 
         this.submitForm = (e) =>{
             e.preventDefault();
-            let products = [...this.state.products, this.state.item]
+            let products = [...this.state.products, {
+                id: Math.random(),
+                name: this.state.item
+            }]
             this.setState({
                 products,
                 item:''
             })
         }
+        this.deleteItem = (id) => {
+            let products = [...this.state.products]
+            let newProducts = products.filter(product => product.id != id)
+            this.setState({
+                products:newProducts
+            })
+        }
     }
     render(){
-        // console.log(this.state.products)
+        console.log(this.state.products)
         return(
             <div className="app">
             {/* {this.state.item} */}
                 <Header />
-                <ListItems products={this.state.products}/>
+                <ListItems products={this.state.products} removeItem={this.deleteItem}/>
                 <AddItem
                     changeInput={this.changeInputVal} 
                     saveData={this.submitForm}
@@ -51,10 +61,15 @@ class Header extends React.Component{
 
 class ListItems extends React.Component{
     render(){
+        console.log(this.props)
         return(
             <div>
                 {
-                    this.props.products.map(product => <Item item={product}/>)
+                    this.props.products.map(product =>
+                    <Item
+                    id={product.id} 
+                    item={product.name} 
+                    removeItem={this.props.removeItem}/>)
                 }
             </div>
             )
@@ -63,7 +78,7 @@ class ListItems extends React.Component{
 
 class Item extends React.Component{
     render(){
-        return<div> {this.props.item} </div>
+        return<div> {this.props.item} <button onClick={() => this.props.removeItem(this.props.id)}>Delete</button> </div>
     }
 }
 
@@ -72,7 +87,9 @@ class AddItem extends React.Component{
     render(){
         return(
             <form onSubmit = {this.props.saveData}>
-                <input type="text" onChange={this.props.changeInput} value={this.props.item}/>
+                <input type="text" 
+                onChange={this.props.changeInput} 
+                value={this.props.item}/>
                 <input type="submit"/>
             </form>
             )

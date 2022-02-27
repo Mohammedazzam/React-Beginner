@@ -30,10 +30,22 @@ var App = function (_React$Component) {
 
         _this.submitForm = function (e) {
             e.preventDefault();
-            var products = [].concat(_toConsumableArray(_this.state.products), [_this.state.item]);
+            var products = [].concat(_toConsumableArray(_this.state.products), [{
+                id: Math.random(),
+                name: _this.state.item
+            }]);
             _this.setState({
                 products: products,
                 item: ''
+            });
+        };
+        _this.deleteItem = function (id) {
+            var products = [].concat(_toConsumableArray(_this.state.products));
+            var newProducts = products.filter(function (product) {
+                return product.id != id;
+            });
+            _this.setState({
+                products: newProducts
             });
         };
         return _this;
@@ -42,12 +54,12 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: 'render',
         value: function render() {
-            // console.log(this.state.products)
+            console.log(this.state.products);
             return React.createElement(
                 'div',
                 { className: 'app' },
                 React.createElement(Header, null),
-                React.createElement(ListItems, { products: this.state.products }),
+                React.createElement(ListItems, { products: this.state.products, removeItem: this.deleteItem }),
                 React.createElement(AddItem, {
                     changeInput: this.changeInputVal,
                     saveData: this.submitForm,
@@ -95,11 +107,17 @@ var ListItems = function (_React$Component3) {
     _createClass(ListItems, [{
         key: 'render',
         value: function render() {
+            var _this4 = this;
+
+            console.log(this.props);
             return React.createElement(
                 'div',
                 null,
                 this.props.products.map(function (product) {
-                    return React.createElement(Item, { item: product });
+                    return React.createElement(Item, {
+                        id: product.id,
+                        item: product.name,
+                        removeItem: _this4.props.removeItem });
                 })
             );
         }
@@ -120,11 +138,21 @@ var Item = function (_React$Component4) {
     _createClass(Item, [{
         key: 'render',
         value: function render() {
+            var _this6 = this;
+
             return React.createElement(
                 'div',
                 null,
                 ' ',
                 this.props.item,
+                ' ',
+                React.createElement(
+                    'button',
+                    { onClick: function onClick() {
+                            return _this6.props.removeItem(_this6.props.id);
+                        } },
+                    'Delete'
+                ),
                 ' '
             );
         }
@@ -148,7 +176,9 @@ var AddItem = function (_React$Component5) {
             return React.createElement(
                 'form',
                 { onSubmit: this.props.saveData },
-                React.createElement('input', { type: 'text', onChange: this.props.changeInput, value: this.props.item }),
+                React.createElement('input', { type: 'text',
+                    onChange: this.props.changeInput,
+                    value: this.props.item }),
                 React.createElement('input', { type: 'submit' })
             );
         }
