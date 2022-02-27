@@ -6,11 +6,11 @@ class App extends React.Component{
             products:[],
             item:''
         }
-        this.changeInputVal = (e) =>{
-            this.setState({
-                item:e.target.value
-            })
-        }
+        //الطريقة الثانية لعمل الفانكشن
+        this.changeInputVal = this.changeInputVal.bind(this)
+
+        // this.submitForm = this.submitForm.bind(this)
+        // this.deleteItem = this.deleteItem.bind(this)
 
         this.submitForm = (e) =>{
             e.preventDefault();
@@ -31,6 +31,14 @@ class App extends React.Component{
             })
         }
     }
+            
+    //الطريقة الثانية لعمل الفانكشن
+    changeInputVal(e) {
+        this.setState({
+            item:e.target.value
+        })
+    }
+
     render(){
         console.log(this.state.products)
         return(

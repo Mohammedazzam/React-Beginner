@@ -21,12 +21,11 @@ var App = function (_React$Component) {
         _this.state = {
             products: [],
             item: ''
-        };
-        _this.changeInputVal = function (e) {
-            _this.setState({
-                item: e.target.value
-            });
-        };
+            //الطريقة الثانية لعمل الفانكشن
+        };_this.changeInputVal = _this.changeInputVal.bind(_this);
+
+        // this.submitForm = this.submitForm.bind(this)
+        // this.deleteItem = this.deleteItem.bind(this)
 
         _this.submitForm = function (e) {
             e.preventDefault();
@@ -51,7 +50,17 @@ var App = function (_React$Component) {
         return _this;
     }
 
+    //الطريقة الثانية لعمل الفانكشن
+
+
     _createClass(App, [{
+        key: 'changeInputVal',
+        value: function changeInputVal(e) {
+            this.setState({
+                item: e.target.value
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             console.log(this.state.products);
