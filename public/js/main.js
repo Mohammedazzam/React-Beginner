@@ -18,26 +18,60 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
         _this.state = {
-            items: [{ id: 1, name: 'product1' }, { id: 2, name: 'product2' }, { id: 3, name: 'product3' }]
+            name: '',
+            option: ''
         };
+        _this.handleInputChange = _this.handleInputChange.bind(_this); //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
+        _this.handleSelectChange = _this.handleSelectChange.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
+        key: 'handleInputChange',
+        value: function handleInputChange(e) {
+            this.setState({
+                name: e.target.value
+            });
+        }
+    }, {
+        key: 'handleSelectChange',
+        value: function handleSelectChange(e) {
+            this.setState({
+                option: e.target.value
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            console.log(this.state);
             return React.createElement(
                 'div',
                 { className: 'app' },
-                this.state.items.map(function (item) {
-                    return React.createElement(
-                        'div',
-                        { key: item.id },
-                        ' ',
-                        item.name
-                    );
-                }),
-                React.createElement(Item, null)
+                React.createElement(
+                    'form',
+                    null,
+                    React.createElement('input', { type: 'text', onChange: this.handleInputChange }),
+                    React.createElement(
+                        'select',
+                        { onChange: this.handleSelectChange },
+                        React.createElement(
+                            'option',
+                            { value: '1' },
+                            '1'
+                        ),
+                        React.createElement(
+                            'option',
+                            { value: '2' },
+                            '2'
+                        ),
+                        React.createElement(
+                            'option',
+                            { value: '3' },
+                            '3'
+                        )
+                    ),
+                    React.createElement('input', { type: 'submit' })
+                )
             );
         }
     }]);
