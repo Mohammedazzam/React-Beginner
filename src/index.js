@@ -5,33 +5,42 @@ class App extends React.Component{
         super();
         this.state ={
             name:'',
-            option:''
+            option:'',
+            submit:false
         }
-        this.handleInputChange = this.handleInputChange.bind(this) //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
-        this.handleSelectChange = this.handleSelectChange.bind(this)
+        this.handleChange = this.handleChange.bind(this) //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
+        this.handleSubmit = this.handleSubmit.bind(this) //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
     }
-    handleInputChange(e){
+
+    handleChange(e){
         this.setState({
-            name:e.target.value
+            [e.target.id]:e.target.value,
+            submit:false  
         })
     }
-    handleSelectChange(e){
+
+    handleSubmit(e){
+        e.preventDefault();
         this.setState({
-            option:e.target.value
+            submit:true
         })
     }
     render(){
         console.log(this.state)
         return(
             <div className="app">
-                <form>
-                    <input type="text" onChange={this.handleInputChange}/>
-                    <select onChange={this.handleSelectChange}>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" onChange={this.handleChange} id="name"/>
+                    <select onChange={this.handleChange} id="option">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
                     <input type="submit"/>
+                    {this.state.submit && <div>
+                        {this.state.name}
+                        {this.state.option}
+                    </div>}
                 </form>
             </div>
         )

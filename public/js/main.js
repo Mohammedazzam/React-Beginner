@@ -2,6 +2,8 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -19,25 +21,27 @@ var App = function (_React$Component) {
 
         _this.state = {
             name: '',
-            option: ''
+            option: '',
+            submit: false
         };
-        _this.handleInputChange = _this.handleInputChange.bind(_this); //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
-        _this.handleSelectChange = _this.handleSelectChange.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this); //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
+        _this.handleSubmit = _this.handleSubmit.bind(_this); //عائدة عليها thisوخلي ال bind هذا من خلالها بغير الكونتيكست من خلال ال
         return _this;
     }
 
     _createClass(App, [{
-        key: 'handleInputChange',
-        value: function handleInputChange(e) {
-            this.setState({
-                name: e.target.value
-            });
+        key: 'handleChange',
+        value: function handleChange(e) {
+            var _setState;
+
+            this.setState((_setState = {}, _defineProperty(_setState, e.target.id, e.target.value), _defineProperty(_setState, 'submit', false), _setState));
         }
     }, {
-        key: 'handleSelectChange',
-        value: function handleSelectChange(e) {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
             this.setState({
-                option: e.target.value
+                submit: true
             });
         }
     }, {
@@ -49,11 +53,11 @@ var App = function (_React$Component) {
                 { className: 'app' },
                 React.createElement(
                     'form',
-                    null,
-                    React.createElement('input', { type: 'text', onChange: this.handleInputChange }),
+                    { onSubmit: this.handleSubmit },
+                    React.createElement('input', { type: 'text', onChange: this.handleChange, id: 'name' }),
                     React.createElement(
                         'select',
-                        { onChange: this.handleSelectChange },
+                        { onChange: this.handleChange, id: 'option' },
                         React.createElement(
                             'option',
                             { value: '1' },
@@ -70,7 +74,13 @@ var App = function (_React$Component) {
                             '3'
                         )
                     ),
-                    React.createElement('input', { type: 'submit' })
+                    React.createElement('input', { type: 'submit' }),
+                    this.state.submit && React.createElement(
+                        'div',
+                        null,
+                        this.state.name,
+                        this.state.option
+                    )
                 )
             );
         }
